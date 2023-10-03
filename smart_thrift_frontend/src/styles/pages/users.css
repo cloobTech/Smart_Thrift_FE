@@ -1,0 +1,153 @@
+.users {
+  padding: 2rem 0;
+  height: 100%;
+}
+
+.users > header > h2 {
+  margin-bottom: 1rem;
+}
+
+.users > main {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  height: 100%;
+  box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+}
+
+main > section.filter-area {
+  display: flex;
+}
+
+section.filter-area > div.search {
+  flex: 1;
+}
+
+section.filter-area > div.filter {
+  margin: 0 0.75rem;
+}
+
+section.filter-area > button.add-new {
+  background-color: var(--theme-blue);
+  color: var(--light);
+  min-width: 80px;
+  height: 2rem;
+  padding: 0 2.5rem;
+  position: relative;
+}
+
+section.filter-area > button.add-new > svg {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0.75rem;
+}
+
+main > section.users-table {
+  flex: 1;
+  margin: 0.75rem 0;
+}
+
+/* Table Head */
+
+div.table-head > h4,
+div.table-body p {
+  margin-right: 1rem;
+  overflow: hidden;
+}
+
+div.table-head > .name,
+div.table-body .name {
+  width: 25%;
+}
+
+div.table-head > .serial-number,
+div.table-body .serial-number {
+  width: 3rem;
+}
+
+div.table-head > .actions,
+div.table-body .actions {
+  width: 20%;
+}
+
+div.table-head > .status,
+div.table-body .status {
+  width: 20%;
+}
+
+div.table-head > .role,
+div.table-body .role {
+  width: 20%;
+}
+
+div.table-head > h4 div.table-body h4 {
+  width: 20%;
+}
+
+section.users-table > div.table-head,
+section.users-table > div.table-body > div.table-row {
+  display: flex;
+  text-align: left;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+}
+
+section.users-table > div.table-head {
+  border: 2px solid #f0f0f0;
+  background-color: #f5f5f5;
+  border-radius: 0.25rem 0.25rem 0 0;
+}
+
+section.users-table > div.table-body {
+  border: 3px solid #f0f0f0;
+  border-radius: 0 0 0.25rem 0.25rem;
+  color: #555;
+  max-height: 80%;
+  padding: 0.75rem 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+/* Table Body */
+section.users-table > div.table-body > div.table-row {
+  border-bottom: 2px solid #f0f0f0;
+  padding: 0.5rem;
+  border-radius: 0;
+}
+
+section.users-table > div.table-body > div.table-row:last-child {
+  border: none;
+}
+section.users-table > div.table-body .actions > ul {
+  display: flex;
+  width: 100%;
+}
+
+div.table-body .actions > ul > li {
+  margin-right: 1rem;
+}
+div.table-body .actions > ul > li.delete {
+  color: var(--danger);
+}
+div.table-body .actions > ul > li.edit {
+  color: var(--warning);
+}
+
+main > section.pagination-area {
+  display: flex;
+  align-items: center;
+}
+
+main > section.pagination-area > div.pagination-btn {
+  display: flex;
+  align-items: center;
+  margin-left: 2rem;
+}
+
+main > section.pagination-area > div.pagination-btn > button {
+  margin: 0 0.5rem;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+}
