@@ -1,9 +1,14 @@
+.private-layout {
+  height: 100vh;
+}
+
 a {
   color: #888;
 }
 
-.private-layout {
-  height: 100vh;
+.private-layout a.active {
+  color: var(--theme-blue);
+  border-color: var(--theme-blue);
 }
 
 .private-layout > main {
@@ -26,24 +31,9 @@ a {
 }
 
 nav > div.search-bar {
-  border: 2px solid #f0f0f0;
-  min-width: 300px;
-  background-color: #fff;
-  display: flex;
-  align-items: center;
-  padding: 0.25rem;
-  padding-left: 0.5rem;
-  position: relative;
-  justify-content: space-between;
-  border-radius: 1rem;
-  color: #888;
+  border-radius: 1.5rem;
 }
-
-nav > div.search-bar > button.search-btn {
-  background-color: var(--theme-blue);
-  color: #fff;
-  width: 80px;
-  padding: 0.25rem 0;
+nav > div.search-bar button {
   border-radius: 0.75rem;
 }
 
@@ -93,7 +83,7 @@ section.side-nav > ul > li > a > span {
 }
 
 main > section.side-nav > ul > li:hover a > span {
-  width: 100px;
+  width: 150px;
   transition: all 0.5s ease-in-out;
 }
 

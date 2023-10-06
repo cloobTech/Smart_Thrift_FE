@@ -1,9 +1,10 @@
 import { FC } from 'react';
-import { Field, ErrorMessage } from 'formik';
+import { Field, FieldProps } from 'formik';
+import { FaExclamationCircle } from 'react-icons/fa';
 
 interface CustomInputProps {
   name: string;
-  label: string;
+  label?: string;
   type?: string;
   placeholder?: string;
 }
@@ -17,13 +18,26 @@ export const TextInput: FC<CustomInputProps> = ({
   return (
     <div className='form-group'>
       <label htmlFor={name}>{label}</label>
-      <Field
-        name={name}
-        type={type}
-        className='form-control'
-        placeholder={placeholder}
-      />
-      <ErrorMessage name={name} component='div' className='error-message' />
+      <Field name={name}>
+        {({ field, meta }: FieldProps) => (
+          <>
+            <input
+              {...field}
+              type={type}
+              className={`form-control ${
+                meta.touched && meta.error ? 'is-invalid' : ''
+              }`}
+              placeholder={placeholder}
+            />
+            {meta.touched && meta.error && (
+              <div className='error-message'>
+                <FaExclamationCircle />
+                <span>{meta.error}</span>
+              </div>
+            )}
+          </>
+        )}
+      </Field>
     </div>
   );
 };

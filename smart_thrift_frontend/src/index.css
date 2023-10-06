@@ -45,6 +45,22 @@ li {
   list-style: none;
 }
 
+button:disabled {
+  background-color: lightgray !important;
+  color: white;
+  border: #f0f0f0;
+}
+
+input {
+  border: 1px solid lightgrey !important;
+  border-radius: 0.25rem !important;
+  padding: 0.5rem 0.25rem !important;
+}
+
+input:focus {
+  border: 2px solid var(--theme-blue) !important;
+}
+
 .container {
   width: 80%;
   margin: 0 auto;
@@ -69,4 +85,14 @@ li {
 
 .btn:hover {
   filter: brightness(0.8);
+}
+
+.error-message {
+  color: #cc0000;
+  display: flex;
+  align-items: center;
+}
+
+.error-message span {
+  margin-left: 0.5rem;
 }

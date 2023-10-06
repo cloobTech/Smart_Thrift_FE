@@ -1,0 +1,29 @@
+.dashboard {
+  padding: 2rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.dashboard > h2 {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+}
+
+.dashbord-bg {
+  text-align: center;
+  height: 300px;
+  width: 400px;
+}
+
+.dashbord-bg h4 {
+  margin-bottom: 1rem;
+}
+
+.dashbord-bg > img {
+  height: 100%;
+  width: 100%;
+}

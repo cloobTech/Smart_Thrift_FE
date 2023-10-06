@@ -4,17 +4,26 @@ import {
   Route,
 } from 'react-router-dom';
 
-// import Landing from '../pages/Landing';
+import Landing from '../pages/Landing';
+import AdminDashboard from '../pages/AdminDashboard';
 import PrivateRouteLayout from '../layouts/PrivateRouteLayout';
+import PulicRoutes from '../components/PublicRoute';
+import PrivateRoutes from '../components/PrivateRoute';
 import Users from '../pages/Users';
 
 export const Routes = createBrowserRouter(
   createRoutesFromElements(
     <Route>
-      {/* <Route path='/' element={<Landing />} /> */}
+      <Route element={<PulicRoutes />}>
+        <Route path='/home' element={<Landing />} />
+      </Route>
 
-      <Route element={<PrivateRouteLayout />}>
-        <Route path='/' element={<Users />} />
+      {/* Private Route */}
+      <Route element={<PrivateRoutes />}>
+        <Route path='/' element={<PrivateRouteLayout />}>
+          <Route index element={<AdminDashboard />} />
+          <Route path='/users' element={<Users />} />
+        </Route>
       </Route>
     </Route>
   )

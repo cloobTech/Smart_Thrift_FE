@@ -1,0 +1,35 @@
+.search-input {
+  border: 2px solid #f0f0f0;
+  display: flex;
+  align-items: center;
+  width: 400px;
+  background-color: white;
+  padding-left: 0.5rem;
+}
+
+.search-input > form {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0.5rem;
+}
+
+.search-input > form > div {
+  width: 100%;
+}
+
+.search-input > form input {
+  outline: none !important;
+  border: none !important;
+  /* font-size: 1.2rem; */
+  padding: 0 !important;
+  padding-left: 0.5rem !important;
+  width: 100%;
+}
+
+.search-input > form > button {
+  background-color: var(--theme-blue);
+  color: #fff;
+  width: 80px;
+  padding: 0.25rem;
+}

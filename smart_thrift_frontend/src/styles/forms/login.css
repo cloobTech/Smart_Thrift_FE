@@ -1,0 +1,38 @@
+.login {
+  min-width: 500px;
+  display: flex;
+  height: 300px;
+  position: relative;
+}
+
+.login > h2 {
+  position: absolute;
+  top: 0.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.login img {
+  width: 180px;
+  height: 100%;
+}
+
+.login form {
+  flex: 1;
+  padding: 3rem 1rem;
+  padding-bottom: 1rem;
+}
+
+.login form .form-group {
+  display: flex;
+  flex-direction: column;
+  margin: 0.75rem 0;
+}
+
+.login form button {
+  width: 100%;
+  padding: 0.5rem;
+  background-color: var(--theme-blue);
+  margin-top: 1rem;
+  color: white;
+}

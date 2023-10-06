@@ -1,56 +1,74 @@
-// import {FC} from 'react'
-// import {Formik, Form} from 'formik'
-// import CustomInput from './formElements'
-
-// const Login:FC = () => {
-//   return (
-//     <div>
-//         Login
-
-//         <Formik>
-            
-//         </Formik>
-
-
-//     </div>
-//   )
-// }
-
-// export default Login
-
 import React from 'react';
 import { Formik, Form } from 'formik';
-import {TextInput} from './formElements';
+import { TextInput } from './formElements';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginUser } from '../../store/slices/authSlice';
+import * as Yup from 'yup';
+import '../../styles/forms/login.css';
+import loginImg from '../../assets/login.svg';
+import { FaLock } from 'react-icons/fa';
 
-const MyForm: React.FC = () => {
+const Login: React.FC = () => {
+  const dispatch = useDispatch();
+  const state = useSelector((state: any) => state.auth);
+
+  // @ts-ignore
+  const handleSubmit = async (values: any, { resetForm, setSubmitting }) => {
+    const formData = new FormData();
+    formData.append('username', values.email);
+    formData.append('password', values.password);
+
+    // @ts-ignore
+    dispatch(loginUser(formData));
+
+    if (state.isAuthenticated) {
+      resetForm();
+    }
+    setSubmitting(false);
+  };
+
   return (
-    <Formik
-      initialValues={{ email: '', password: '' }}
-      onSubmit={(values) => {
-        // Handle form submission here
-        console.log(values);
-      }}
-      // Add validation schema using Yup if needed
-      // validationSchema={yourValidationSchema}
-    >
-      <Form>
-        <TextInput
-          name='email'
-          label='Email'
-          type='email'
-          placeholder='Enter your email'
-        />
-        <TextInput
-          name='password'
-          label='Password'
-          type='password'
-          placeholder='Enter your password'
-        />
-        <button type='submit'>Submit</button>
-      </Form>
-    </Formik>
+    <div className='login'>
+      <h2>
+        Secure Login <FaLock />
+      </h2>
+      <img src={loginImg} alt='' />
+      <Formik
+        initialValues={{ email: '', password: '' }}
+        onSubmit={handleSubmit} // Handle Form Validation
+        validationSchema={Yup.object({
+          email: Yup.string()
+            .email('Invalid email address')
+            .required('Required'),
+          password: Yup.string().required('Password is required'),
+        })}
+      >
+        {({ isSubmitting }) => (
+          <Form>
+            <TextInput
+              name='email'
+              label='Email'
+              type='email'
+              placeholder='John@Doe.com'
+            />
+            <TextInput
+              name='password'
+              label='Password'
+              type='password'
+              placeholder='*********'
+            />
+            <button
+              type='submit'
+              disabled={state.loading || isSubmitting}
+              className='btn'
+            >
+              {state.loading || isSubmitting ? 'Loading..' : 'Submit'}
+            </button>
+          </Form>
+        )}
+      </Formik>
+    </div>
   );
 };
 
-export default MyForm;
-
+export default Login;
