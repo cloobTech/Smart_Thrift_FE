@@ -1,0 +1,108 @@
+.membership {
+  height: 100%;
+  min-width: 600px;
+  padding: 1rem 2rem;
+  user-select: none;
+}
+
+.membership > section.heading > h3 {
+  display: flex;
+  align-items: center;
+  color: var(--theme-blue);
+}
+
+.membership > section.heading > h3 > svg {
+  margin-right: 0.5rem;
+}
+
+.membership > section.heading > h2 {
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.membership > section.form-groups > form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  position: relative;
+}
+
+section.form-groups > form > div.form-group {
+  width: calc(50% - 1rem);
+  display: flex;
+  flex-direction: column;
+  margin: 0.25rem 0;
+}
+
+section.form-groups > form > div.check-box {
+  flex-direction: row;
+  margin-top: 1.75rem;
+  position: relative;
+  align-items: center;
+}
+
+section.form-groups > form > div.radio-btns > .radio-btn {
+  display: flex;
+  align-items: center;
+  width: 30%;
+  position: relative;
+  margin: 0.25rem 0;
+}
+
+section.form-groups > form > div.radio-btns > .radio-btn input[type='radio'] {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+section.form-groups > form > div.radio-btns > .radio-btn span {
+  /* margin-top: 0.25rem; */
+  display: inline-block;
+}
+
+section.form-groups > form > div.btn-container {
+  position: absolute;
+  right: 0;
+  bottom: 0.75rem;
+  width: calc(50% - 1rem);
+}
+
+section.form-groups > form > div.btn-container > p {
+  color: var(--warning);
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+section.form-groups > form > div.btn-container > p > svg {
+  margin-right: 0.5rem;
+}
+
+section.form-groups > form > div > button {
+  padding: 0.5rem;
+  background-color: var(--theme-blue);
+  color: white;
+  height: 40px;
+  width: 100%;
+}
+
+/* EDIT SECTION */
+
+.edit-user .form-groups > form > div.check-box {
+  margin: 1rem 0;
+  display: inline;
+  height: 30px;
+}
+
+.edit-user section.form-groups > form > div.btn-container > button {
+  background-color: var(--warning);
+}
+
+
+.edit-user section.form-groups > form > .form-group > input[readonly]{
+  /* border: 2px solid red !important; */
+  background: #f0f0f0;
+  border: none !important;
+  outline: none !important;
+}

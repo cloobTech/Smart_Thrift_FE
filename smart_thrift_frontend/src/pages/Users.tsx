@@ -1,18 +1,25 @@
-import { FC, useState } from 'react';
+import { FC, useState, ReactNode, useEffect } from 'react';
 import { FaPlus, FaCaretRight, FaCaretLeft } from 'react-icons/fa';
 import SearchInput from '../components/SearchInput';
 import UserRow from '../components/UserRow';
 import '../styles/pages/users.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchUsers } from '../store/slices/usersSlice';
+import { fetchUsers, deleteUser } from '../store/slices/usersSlice';
+import { Membership, UpdateUser } from '../components/forms/users';
+import ConfirmBox from '../components/ConfirmBox';
+import Modal from '../components/Modal';
+import { useNavigate } from 'react-router-dom';
 
 const Users: FC = () => {
-  const column: string | null = 'last_name';
+  const column: string | null = 'last_name'; //column to search on DB
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const state = useSelector((state: any) => state.users);
   const [searchString, setSearchString] = useState('' as any);
+  const [modalContent, setModalContent] = useState<ReactNode | null>(null); // Annotate modalContent
+  const [isOpen, setIsModalOpen] = useState<boolean>(false);
 
-  const { users } = state;
+  const { users, loading, error } = state;
   const { data, total_pages, page, page_size, next, prev, total_items } = users;
   const { token } = useSelector((state: any) => state.auth);
 
@@ -28,20 +35,72 @@ const Users: FC = () => {
   };
 
   const handleSeach = (value: string) => {
-    // Column to search on DB
     // @ts-ignore
     const search_string = value.searchString;
     setSearchString(search_string);
 
     dispatch(
       // @ts-ignore
-      fetchUsers({ token, page, page_size, column, search_string })
+      fetchUsers({ token, page: 1, page_size, column, search_string })
     );
   };
 
-  // useEffect(() => {
-  //   // @ts-ignore
-  // }, []);
+  // handle modal open
+  const handleNewUserForm = () => {
+    setIsModalOpen(true);
+    setModalContent(<Membership />);
+  };
+
+  // Handle Modal close
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+  };
+
+  // This delete function will be called in the confimation box
+  const handleDelete = async (id: string) => {
+    try {
+      // @ts-ignore
+      dispatch(deleteUser({ token, id }));
+      if (!loading && error === null) {
+        setIsModalOpen(false);
+      }
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  // Delete User
+  const deleteUserHandler = (id: string) => {
+    setIsModalOpen(true);
+    setModalContent(
+      <ConfirmBox
+        details='Remove User'
+        // @ts-ignore
+        onDelete={() => handleDelete(id)}
+        onCancel={handleModalClose}
+        // onDelete={() => console.log('Delering')}
+      />
+    );
+  };
+
+  // const handleDeleteConfimation = (id: string) => {
+  // };
+
+  // Navigate to a single user's page
+  const handleUser = (id: string) => {
+    // @ts-ignore
+    navigate(`/users/${id}`);
+  };
+
+  const editHandler = (data: object) => {
+    setIsModalOpen(true);
+    // @ts-ignore
+    setModalContent(<UpdateUser {...data} closeModal={handleModalClose} />);
+  };
+
+  useEffect(() => {
+    getUsersHandler();
+  }, [token]);
 
   return (
     <div className='users lg-container'>
@@ -61,7 +120,7 @@ const Users: FC = () => {
             />
           </div>
           <div className='filter'></div>
-          <button className='btn add-new'>
+          <button className='btn add-new' onClick={handleNewUserForm}>
             <FaPlus />
             Add New Member
           </button>
@@ -73,6 +132,7 @@ const Users: FC = () => {
             <h4 className='first-name'>First Name</h4>
             <h4 className='last-name'>Last Name</h4>
             <h4 className='status'>Status</h4>
+            <h4 className='slot'>Slot</h4>
             <h4 className='role'>Role</h4>
             <h4 className='actions'>Actions</h4>
           </div>
@@ -80,6 +140,10 @@ const Users: FC = () => {
             {data && data.length > 0 ? (
               data.map((data: any, index: number) => (
                 <UserRow
+                  onDelete={() => deleteUserHandler(data.id)}
+                  onEdit={() => editHandler(data)}
+                  onClick={() => handleUser(data.id)}
+                  key={index}
                   {...data}
                   serial_number={(page - 1) * page_size + (index + 1)}
                 />
@@ -94,17 +158,16 @@ const Users: FC = () => {
             Page {page} of {total_pages}
           </span>
           <div className='pagination-btn'>
-            {prev && (
-              <button
-                title='prev'
-                onClick={() =>
-                  // @ts-ignore
-                  getUsersHandler(page - 1, page_size, column, searchString)
-                }
-              >
-                <FaCaretLeft /> Prev
-              </button>
-            )}
+            <button
+              className={`btn ${!prev && 'btn-hide'}`}
+              title='prev'
+              onClick={() =>
+                // @ts-ignore
+                getUsersHandler(page - 1, page_size, column, searchString)
+              }
+            >
+              <FaCaretLeft /> Prev
+            </button>
 
             <div className='page-btns'>
               {Array.from({ length: total_pages }, (_, index) => (
@@ -120,21 +183,26 @@ const Users: FC = () => {
                 </button>
               ))}
             </div>
-            {next && (
-              <button
-                title='next'
-                onClick={() =>
-                  // @ts-ignore
-                  getUsersHandler(page + 1, page_size, column, searchString)
-                }
-              >
-                Next
-                <FaCaretRight />
-              </button>
-            )}
+
+            <button
+              className={`btn ${!next && 'btn-hide'}`}
+              title='next'
+              onClick={() =>
+                // @ts-ignore
+                getUsersHandler(page + 1, page_size, column, searchString)
+              }
+            >
+              Next
+              <FaCaretRight />
+            </button>
           </div>
         </section>
       </main>
+      <Modal
+        isOpen={isOpen}
+        modalContent={modalContent}
+        onClose={handleModalClose}
+      />
     </div>
   );
 };

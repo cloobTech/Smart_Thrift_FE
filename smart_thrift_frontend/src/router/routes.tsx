@@ -10,6 +10,7 @@ import PrivateRouteLayout from '../layouts/PrivateRouteLayout';
 import PulicRoutes from '../components/PublicRoute';
 import PrivateRoutes from '../components/PrivateRoute';
 import Users from '../pages/Users';
+import User from '../pages/user';
 
 export const Routes = createBrowserRouter(
   createRoutesFromElements(
@@ -22,7 +23,8 @@ export const Routes = createBrowserRouter(
       <Route element={<PrivateRoutes />}>
         <Route path='/' element={<PrivateRouteLayout />}>
           <Route index element={<AdminDashboard />} />
-          <Route path='/users' element={<Users />} />
+          <Route path='/users' element={<Users />}></Route>
+          <Route path='users/:id' element={<User />} />
         </Route>
       </Route>
     </Route>

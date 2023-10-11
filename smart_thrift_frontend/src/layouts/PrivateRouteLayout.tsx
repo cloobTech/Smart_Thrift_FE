@@ -19,13 +19,16 @@ const PrivateRouteLayout = () => {
   const { token } = useSelector((state: any) => state.auth);
   const navigate = useNavigate();
 
-  console.log(token);
-
   // logout User
   const handleLogout = () => {
+    console.log('Logging out...');
     localStorage.removeItem('token');
-    navigate('/home');
+    // Check if the user is already logged out before navigating
+    if (localStorage.getItem('token')) {
+      navigate('/home');
+    }
   };
+
 
   // search for an iten
   const getUsersHandler = (page: number = 1, page_size: number = 6) => {

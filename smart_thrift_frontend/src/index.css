@@ -96,3 +96,19 @@ input:focus {
 .error-message span {
   margin-left: 0.5rem;
 }
+
+.red {
+  color: var(--danger);
+}
+
+.green {
+  color: var(--success);
+}
+
+.blue {
+  color: var(--theme-blue);
+}
+
+.warning {
+  color: var(--warning);
+}
