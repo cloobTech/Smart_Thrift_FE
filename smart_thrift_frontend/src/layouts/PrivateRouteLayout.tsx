@@ -29,7 +29,6 @@ const PrivateRouteLayout = () => {
     }
   };
 
-
   // search for an iten
   const getUsersHandler = (page: number = 1, page_size: number = 6) => {
     // @ts-ignore
@@ -69,7 +68,7 @@ const PrivateRouteLayout = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to={'/contributions'}>
+              <NavLink to={'/contributions/profile'}>
                 <FaMoneyCheck />
                 <span>Contribution</span>
               </NavLink>

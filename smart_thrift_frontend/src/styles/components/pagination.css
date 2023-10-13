@@ -1,0 +1,51 @@
+section.pagination-area > div.pagination {
+  display: flex;
+  align-items: center;
+}
+
+section.pagination-area > div.pagination > div.pagination-btn {
+  display: flex;
+  align-items: center;
+  margin-left: 2rem;
+}
+
+section.pagination-area > div.pagination > div.pagination-btn > button {
+  margin: 0 0.5rem;
+  display: flex;
+  cursor: pointer;
+  padding: 0.25rem;
+  border: 2px solid var(--text-dark);
+}
+
+section.pagination-area
+  > div.pagination
+  > div.pagination-btn
+  > button.btn-hide {
+  visibility: hidden;
+}
+
+section.pagination-area > div.pagination > div.pagination-btn > div.page-btns {
+  display: flex;
+  align-items: center;
+}
+
+section.pagination-area
+  > div.pagination
+  > div.pagination-btn
+  > div.page-btns
+  > button {
+  padding: 0.25rem 0.5rem;
+  background-color: #fff;
+  box-shadow: 0 0 3px 0.5px rgba(0, 0, 0, 0.3);
+  margin: 0 0.25rem;
+  /* border: 2px solid red; */
+}
+
+section.pagination-area
+  > div.pagination
+  > div.pagination-btn
+  > div.page-btns
+  > button.active {
+  background-color: var(--theme-blue);
+  color: #f0f0f0;
+}

@@ -1,0 +1,39 @@
+.contributions {
+  /* border: 2px solid red; */
+}
+
+.contributions > header {
+  /* padding: 1rem 2rem; */
+  padding-bottom: 0;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.contributions > header > h2 {
+  padding: 1rem 2rem;
+}
+
+.contributions > header > nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+.contributions > header > nav > a {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  padding: 0.5rem 0;
+  border-right: 2px solid #f0f0f0;
+  border-bottom: 2px solid #f0f0f0;
+  transition: all 300ms ease;
+}
+
+.contributions > header > nav > a:last-child{
+    border-right: none;
+    border-left: 2px solid #f0f0f0;
+
+}
+
+.contributions .active {
+  border-color: var(--theme-blue) !important;
+  box-shadow:  0 2px 7px 1px rgba(0, 0, 0, .1);
+}

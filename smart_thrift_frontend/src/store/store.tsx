@@ -30,8 +30,8 @@ export const store = configureStore({
   },
   preloadedState: {
     auth: {
-      isAuthenticated: !!token && !isTokenExpired(),
-      // isAuthenticated: true,
+      // isAuthenticated: !!token && !isTokenExpired(),
+      isAuthenticated: true,
       token: token,
       error: false,
       loading: false,
