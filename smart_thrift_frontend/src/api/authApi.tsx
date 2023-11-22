@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-export const BASE_URL = 'http://localhost:8000';
+// export const BASE_URL = 'http://localhost:8000';
+export const BASE_URL = 'http://13.53.176.46:8000';
 
 export interface Credentials {
   username: string;
